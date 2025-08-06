@@ -1019,7 +1019,8 @@ WORD32 isvcd_parse_part_slice_hdr(UWORD8 *pu1_input_buf, WORD32 i4_input_buf_siz
     {
         return ERROR_INV_SLICE_HDR_T;
     }
-    if(ps_nal_prms->u4_first_mb_addr > (ps_sps->u2_frm_ht_in_mbs * ps_sps->u2_frm_wd_in_mbs))
+    if(ps_nal_prms->u4_first_mb_addr >
+       ((UWORD32) ps_sps->u2_frm_ht_in_mbs * (UWORD32) ps_sps->u2_frm_wd_in_mbs))
     {
         return ERROR_CORRUPTED_SLICE;
     }

@@ -907,7 +907,9 @@ static IV_API_CALL_STATUS_T imvcd_view_decode(iv_obj_t *ps_dec_hdl, imvcd_video_
                 nalu_mvc_ext_t *ps_cur_nalu_mvc_ext = imvcd_get_cur_nalu_mvc_ext(ps_mvcd_ctxt);
 
                 /*BS is done for all mbs while parsing*/
-                u4_max_addr = (ps_view_ctxt->u2_frm_wd_in_mbs * ps_view_ctxt->u2_frm_ht_in_mbs) - 1;
+                u4_max_addr = ((UWORD32) ps_view_ctxt->u2_frm_wd_in_mbs *
+                               (UWORD32) ps_view_ctxt->u2_frm_ht_in_mbs) -
+                              1;
                 ps_view_ctxt->u4_cur_bs_mb_num = u4_max_addr + 1;
 
                 ps_view_ctxt->ps_cur_pic = &ps_view_ctxt->s_cur_pic;

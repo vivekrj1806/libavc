@@ -173,7 +173,7 @@ WORD16 isvcd_allocate_dynamic_bufs(svc_dec_lyr_struct_t *ps_svc_lyr_dec)
     /**********************************/
 
     /* MB type buffer : one element per MB */
-    size = (ps_dec->u2_frm_wd_in_mbs + 2) * (ps_dec->u2_frm_ht_in_mbs + 2) *
+    size = ((UWORD32)ps_dec->u2_frm_wd_in_mbs + 2) * ((UWORD32)ps_dec->u2_frm_ht_in_mbs + 2) *
            sizeof(inter_lyr_mb_prms_t);
     pv_buf = ps_dec->pf_aligned_alloc(pv_mem_ctxt, 128, size);
     RETURN_IF((NULL == pv_buf), IV_FAIL);
@@ -183,8 +183,8 @@ WORD16 isvcd_allocate_dynamic_bufs(svc_dec_lyr_struct_t *ps_svc_lyr_dec)
     ps_svc_lyr_dec->ps_inter_lyr_mb_prms_frm_start =
         ps_svc_lyr_dec->ps_inter_lyr_mb_prms_base + 1 + ps_svc_lyr_dec->u2_inter_lyr_mb_prms_stride;
 
-    ps_svc_lyr_dec->u4_inter_lyr_mb_prms_size = (ps_dec->u2_frm_wd_in_mbs + 2) *
-                                                (ps_dec->u2_frm_ht_in_mbs + 2) *
+    ps_svc_lyr_dec->u4_inter_lyr_mb_prms_size = ((UWORD32)ps_dec->u2_frm_wd_in_mbs + 2) *
+                                                ((UWORD32)ps_dec->u2_frm_ht_in_mbs + 2) *
                                                 sizeof(inter_lyr_mb_prms_t);
 
     /* Luma Residual data at each layer : dafault 0*/
@@ -774,7 +774,7 @@ WORD32 isvcd_init_pic(svc_dec_lyr_struct_t *ps_svc_lyr_dec, UWORD16 u2_frame_num
     /* Get the value of MaxMbAddress and frmheight in Mbs                 */
     /*--------------------------------------------------------------------*/
     ps_seq->u4_max_mb_addr =
-        (ps_seq->u2_frm_wd_in_mbs *
+        ((UWORD32)ps_seq->u2_frm_wd_in_mbs *
          (ps_dec->u2_pic_ht >> (4 + ps_dec->ps_cur_slice->u1_field_pic_flag))) -
         1;
     ps_dec->u2_frm_ht_in_mbs = (ps_dec->u2_pic_ht >> (4 + ps_dec->ps_cur_slice->u1_field_pic_flag));

@@ -282,7 +282,8 @@ static WORD32 imvcd_parse_subset_sps(mvc_dec_ctxt_t *ps_mvcd_ctxt, dec_bit_strea
     }
 
     ps_subset_sps->s_sps_data.u4_max_mb_addr =
-        ps_subset_sps->s_sps_data.u2_frm_wd_in_mbs * ps_subset_sps->s_sps_data.u2_frm_ht_in_mbs - 1;
+        (UWORD32) ps_subset_sps->s_sps_data.u2_frm_wd_in_mbs *
+            (UWORD32) ps_subset_sps->s_sps_data.u2_frm_ht_in_mbs - 1;
 
     ps_subset_sps->s_sps_data.u4_total_num_of_mbs = ps_subset_sps->s_sps_data.u4_max_mb_addr + 1;
 

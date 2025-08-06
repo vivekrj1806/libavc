@@ -371,7 +371,7 @@ WORD32 ih264d_decode_recon_tfr_nmb_thread(dec_struct_t * ps_dec,
             if(u4_update_mbaff)
             {
                 UWORD32 u4_mb_num = ps_cur_mb_info->u2_mbx
-                                + ps_dec->u2_frm_wd_in_mbs
+                                + (UWORD32)ps_dec->u2_frm_wd_in_mbs
                                                 * (ps_cur_mb_info->u2_mby >> 1);
                 UPDATE_MB_MAP_MBNUM_BYTE(ps_dec->pu1_recon_mb_map, u4_mb_num);
                 u4_update_mbaff = 0;
@@ -384,7 +384,7 @@ WORD32 ih264d_decode_recon_tfr_nmb_thread(dec_struct_t * ps_dec,
         else
         {
             UWORD32 u4_mb_num = ps_cur_mb_info->u2_mbx
-                            + ps_dec->u2_frm_wd_in_mbs * ps_cur_mb_info->u2_mby;
+                            + (UWORD32)ps_dec->u2_frm_wd_in_mbs * (UWORD32)ps_cur_mb_info->u2_mby;
             UPDATE_MB_MAP_MBNUM_BYTE(ps_dec->pu1_recon_mb_map, u4_mb_num);
         }
         ps_dec->cur_dec_mb_num++;

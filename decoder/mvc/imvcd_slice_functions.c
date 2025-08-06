@@ -63,7 +63,7 @@ static WORD32 imvcd_set_first_mb_in_slice(dec_struct_t *ps_view_ctxt)
     ps_cur_slice->u2_first_mb_in_slice = ih264d_uev(&ps_bitstrm->u4_ofst, ps_bitstrm->pu4_buffer);
 
     if(ps_cur_slice->u2_first_mb_in_slice >=
-       (ps_view_ctxt->u2_frm_ht_in_mbs * ps_view_ctxt->u2_frm_wd_in_mbs))
+       ((UWORD32)ps_view_ctxt->u2_frm_ht_in_mbs * (UWORD32)ps_view_ctxt->u2_frm_wd_in_mbs))
     {
         return ERROR_CORRUPTED_SLICE;
     }
@@ -832,7 +832,7 @@ static WORD32 imvcd_pic_init(mvc_dec_ctxt_t *ps_mvcd_ctxt, pocstruct_t *ps_cur_p
     ps_view_ctxt->i4_frametype = IV_NA_FRAME;
     ps_view_ctxt->i4_content_type = IV_CONTENTTYPE_NA;
 
-    ps_sps->u4_max_mb_addr = ps_sps->u2_frm_wd_in_mbs * ps_sps->u2_frm_ht_in_mbs - 1;
+    ps_sps->u4_max_mb_addr = (UWORD32)ps_sps->u2_frm_wd_in_mbs * (UWORD32)ps_sps->u2_frm_ht_in_mbs - 1;
     ps_view_ctxt->u2_frm_ht_in_mbs = ps_sps->u2_frm_ht_in_mbs;
 
     if(!ps_view_ctxt->u1_init_dec_flag)

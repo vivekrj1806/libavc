@@ -5354,7 +5354,8 @@ WORD32 isvcd_video_decode(iv_obj_t *dec_hdl, void *pv_api_ip, void *pv_api_op)
                 ps_cur_node = ps_cur_node->ps_top_node;
 
                 if((ps_dec->u4_pic_buf_got == 1) && (ret != IVD_MEM_ALLOC_FAILED) &&
-                   ps_dec->u4_total_mbs_coded < ps_dec->u2_frm_ht_in_mbs * ps_dec->u2_frm_wd_in_mbs)
+                   ps_dec->u4_total_mbs_coded <
+                       (UWORD32) ps_dec->u2_frm_ht_in_mbs * (UWORD32) ps_dec->u2_frm_wd_in_mbs)
                 {
                     // last slice - missing/corruption
                     WORD32 num_mb_skipped;
@@ -5424,7 +5425,9 @@ WORD32 isvcd_video_decode(iv_obj_t *dec_hdl, void *pv_api_ip, void *pv_api_op)
                             UWORD32 u4_slice_end = 0;
 
                             /*BS is done for all mbs while parsing*/
-                            u4_max_addr = (ps_dec->u2_frm_wd_in_mbs * ps_dec->u2_frm_ht_in_mbs) - 1;
+                            u4_max_addr = ((UWORD32) ps_dec->u2_frm_wd_in_mbs *
+                                           (UWORD32) ps_dec->u2_frm_ht_in_mbs) -
+                                          1;
                             /* BS is moved post recon gen in SVC ext*/
 
                             ih264d_init_deblk_tfr_ctxt(ps_dec, ps_pad_mgr, ps_tfr_cxt,

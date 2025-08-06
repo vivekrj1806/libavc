@@ -1702,7 +1702,7 @@ WORD32 ih264d_mark_err_slice_skip(dec_struct_t * ps_dec,
             }
 
             if(ps_dec->u4_total_mbs_coded
-                    >= ps_dec->u2_frm_ht_in_mbs * ps_dec->u2_frm_wd_in_mbs)
+                    >= (UWORD32)ps_dec->u2_frm_ht_in_mbs * (UWORD32)ps_dec->u2_frm_wd_in_mbs)
             {
                 ps_dec->u1_pic_decode_done = 1;
                 return 0;
@@ -1937,7 +1937,7 @@ WORD32 ih264d_mark_err_slice_skip(dec_struct_t * ps_dec,
     ps_dec->i2_prev_slice_mby = ps_dec->u2_mby;
 
     if(ps_dec->u4_total_mbs_coded
-            >= ps_dec->u2_frm_ht_in_mbs * ps_dec->u2_frm_wd_in_mbs)
+            >= (UWORD32)ps_dec->u2_frm_ht_in_mbs * (UWORD32)ps_dec->u2_frm_wd_in_mbs)
     {
         ps_dec->u1_pic_decode_done = 1;
     }

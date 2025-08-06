@@ -1093,7 +1093,7 @@ WORD32 ih264d_parse_decode_slice(UWORD8 u1_is_idr_slice,
     u2_first_mb_in_slice = ih264d_uev(pu4_bitstrm_ofst,
                                      pu4_bitstrm_buf);
     if(u2_first_mb_in_slice
-                    >= (ps_dec->u2_frm_ht_in_mbs * ps_dec->u2_frm_wd_in_mbs))
+                    >= ((UWORD32)ps_dec->u2_frm_ht_in_mbs * (UWORD32)ps_dec->u2_frm_wd_in_mbs))
     {
 
         return ERROR_CORRUPTED_SLICE;
@@ -1337,7 +1337,7 @@ WORD32 ih264d_parse_decode_slice(UWORD8 u1_is_idr_slice,
             else
                 ps_cur_slice->u1_bottom_field_flag = 0;
 
-            num_mb_skipped = (ps_dec->u2_frm_ht_in_mbs * ps_dec->u2_frm_wd_in_mbs)
+            num_mb_skipped = ((UWORD32)ps_dec->u2_frm_ht_in_mbs * (UWORD32)ps_dec->u2_frm_wd_in_mbs)
                     - ps_dec->u4_total_mbs_coded;
             ps_cur_poc = &ps_dec->s_cur_pic_poc;
 
@@ -1371,8 +1371,8 @@ WORD32 ih264d_parse_decode_slice(UWORD8 u1_is_idr_slice,
             /* since i1_is_end_of_poc is set ,means new frame num is encountered. so conceal the current frame
              * completely */
             prev_slice_err = 2;
-            num_mb_skipped = (ps_dec->u2_frm_ht_in_mbs
-                            * ps_dec->u2_frm_wd_in_mbs)
+            num_mb_skipped = ((UWORD32)ps_dec->u2_frm_ht_in_mbs
+                            * (UWORD32)ps_dec->u2_frm_wd_in_mbs)
                             - ps_dec->u4_total_mbs_coded;
             ps_cur_poc = &s_tmp_poc;
         }
